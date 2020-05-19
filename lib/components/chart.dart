@@ -25,23 +25,25 @@ class Chart extends StatelessWidget {
         }
       }
 
-      print(DateFormat.E().format(weekDay)[0]);
-      print(totalSum);
+      DateFormat dateFormat = DateFormat(DateFormat.WEEKDAY, 'pt_Br');      
 
       return {
-        'day': DateFormat.E().format(weekDay)[0],
-        'value': 9.99,
+        'day': dateFormat.format(weekDay)[0].toUpperCase(),
+        'value': totalSum,
       };
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    groupedTransactions;
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
-        children: <Widget>[],
+        children: groupedTransactions.map((tr) {
+          return Text('${tr['day']}: ${tr['value']}');
+        }).toList(),
       ),
     );
   }
